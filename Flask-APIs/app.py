@@ -15,12 +15,9 @@ def predict():
     headers = {
         'Content-Type': 'application/json',
     }
-    res = request.form
-    data = res.to_dict(flat=False)
-    # print(data['symptoms'])
-    user_input = ','.join(data['symptoms']).replace(' ', '_').replace('{', '').replace('}', '')
-    print(user_input)
-    # user_input = data['symptoms'].replace(' ', '_')
+    res = request.json
+    print(res)
+    user_input = ','.join(res['symptoms']).replace(' ', '_')
 
     symptoms = {
         # Define your symptoms here
@@ -32,11 +29,11 @@ def predict():
         words = symptom.strip().split()
         # print(words)
         for word in words:
+            word = word.strip('_')
             if word in symptoms.keys():
-                print(word)
                 symptoms[word] = 1
 
-    print(symptoms)
+    # print(symptoms)
 
     df_test = pd.DataFrame(columns=list(symptoms.keys()))
     df_test.loc[0] = np.array(list(symptoms.values()))
@@ -45,7 +42,7 @@ def predict():
     predicted_disease = result[0]
 
     response = {'predicted_disease': predicted_disease}
-    print(response)
+    # print(response)
     return jsonify(response)
 
 
