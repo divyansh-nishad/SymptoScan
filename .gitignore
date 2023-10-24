@@ -134,4 +134,4 @@ dmypy.json
 Datasets/
 
 #Secrets
-lib/auth/secrets.json
+sympto_scan_flutter/lib/auth/secrets.json
