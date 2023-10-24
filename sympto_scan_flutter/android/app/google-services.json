@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "457727618581",
+    "project_id": "symptoscan-d05e3",
+    "storage_bucket": "symptoscan-d05e3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:457727618581:android:cfd3660873585eb56ee81c",
+        "android_client_info": {
+          "package_name": "com.example.sympto_scan_flutter"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA_SUeIp8XNHpGSmrnA9861iTkDOenifwA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

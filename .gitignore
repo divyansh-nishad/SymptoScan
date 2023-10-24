@@ -132,3 +132,6 @@ dmypy.json
 
 #Datasets
 Datasets/
+
+#Secrets
+lib/auth/secrets.json

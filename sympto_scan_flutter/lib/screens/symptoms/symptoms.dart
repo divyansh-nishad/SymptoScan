@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 
@@ -31,7 +32,13 @@ class _SymptomsState extends State<Symptoms> {
       Map<String, dynamic> data = jsonDecode(response.body);
       print(data);
       setState(() {
-        _predictedDisease = data["predicted_disease"];
+        if (data["predicted_disease"] != "AIDS") {
+          _predictedDisease = data["predicted_disease"];
+          // Show the feedback dialog.
+          _showFeedbackDialog(context);
+        } else {
+          _predictedDisease = "You seem fine! Are you tired??";
+        }
       });
     } else {
       setState(() {
@@ -99,7 +106,7 @@ class _SymptomsState extends State<Symptoms> {
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.white,
                 padding: const EdgeInsets.fromLTRB(30, 15, 30, 15),
-                shape: RoundedRectangleBorder(
+                shape: const RoundedRectangleBorder(
                   borderRadius: BorderRadius.all(Radius.circular(20)),
                 ),
               ),
@@ -113,5 +120,55 @@ class _SymptomsState extends State<Symptoms> {
         ),
       ),
     );
+  }
+
+  Future<void> _showFeedbackDialog(BuildContext context) async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Predicted Disease: $_predictedDisease'),
+          content: const SingleChildScrollView(
+            child: ListBody(
+              children: <Widget>[
+                Text('Was the prediction relevant?'),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: const Text('Yes'),
+              onPressed: () {
+                // Save feedback as 'Relevant' to Firebase
+                _saveFeedback('Relevant');
+                Navigator.of(context).pop();
+              },
+            ),
+            TextButton(
+              child: const Text('No'),
+              onPressed: () {
+                // Save feedback as 'Not Relevant' to Firebase
+                _saveFeedback('Not Relevant');
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  Future<void> _saveFeedback(String feedback) async {
+    // Replace 'your_collection_name' with your Firebase collection name.
+    CollectionReference feedbackCollection =
+        FirebaseFirestore.instance.collection('Feedback');
+
+    await feedbackCollection.add({
+      'symptoms': _symptomsController.text,
+      'predicted_disease': _predictedDisease,
+      'feedback': feedback,
+      'timestamp': FieldValue.serverTimestamp(),
+    });
   }
 }

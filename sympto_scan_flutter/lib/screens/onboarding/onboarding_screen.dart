@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:liquid_swipe/liquid_swipe.dart';
+import 'package:sympto_scan_flutter/screens/login_signup/auth_page.dart';
 import 'package:sympto_scan_flutter/screens/symptoms/symptoms.dart';
 
 import '../login_signup/login_page.dart';
@@ -165,7 +166,7 @@ class Onboarding extends StatelessWidget {
                             Navigator.pushReplacement(
                               context,
                               MaterialPageRoute<void>(
-                                builder: (BuildContext context) => Symptoms(),
+                                builder: (BuildContext context) => const AuthPage()/*Symptoms()*/,
                               ),
                             );
                           },
