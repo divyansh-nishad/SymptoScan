@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
+import 'package:sympto_scan_flutter/screens/remedies/youtube_remedy.dart';
 
 class Symptoms extends StatefulWidget {
   @override
@@ -142,7 +143,13 @@ class _SymptomsState extends State<Symptoms> {
               onPressed: () {
                 // Save feedback as 'Relevant' to Firebase
                 _saveFeedback('Relevant');
-                Navigator.of(context).pop();
+                Navigator.of(context).pushReplacement(
+                  MaterialPageRoute<void>(
+                    builder: (BuildContext context) =>
+                        VideoSuggestionsPage(query: _predictedDisease),
+                  ),
+                );
+                // Navigator.of(context).pop();
               },
             ),
             TextButton(

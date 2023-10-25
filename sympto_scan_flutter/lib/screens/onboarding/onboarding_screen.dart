@@ -166,7 +166,7 @@ class Onboarding extends StatelessWidget {
                             Navigator.pushReplacement(
                               context,
                               MaterialPageRoute<void>(
-                                builder: (BuildContext context) => const AuthPage()/*Symptoms()*/,
+                                builder: (BuildContext context) => AuthPage()/*Symptoms()*/,
                               ),
                             );
                           },
