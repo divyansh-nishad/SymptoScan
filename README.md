@@ -2,6 +2,11 @@
 
 This project explores the use of machine learning algorithms to predict diseases from symptoms. 
 
+![First](/assets/images/1.png)
+![Onboarding](/assets/images/2.png)
+![Chat](/assets/images/3.png)
+![Library](/assets/images/4.png)
+
 ### Algorithms Explored
 
 The following algorithms have been explored in code:

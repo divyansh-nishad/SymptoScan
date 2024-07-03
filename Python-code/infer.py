@@ -38,7 +38,7 @@ if __name__ == '__main__':
     # Split user input on commas
     split_input = user_input.split(",")
 
-    # Loop over each symptom in split_input
+    # Loop over each symptom in split_inzput
     for symptom in split_input:
         # Split symptom on spaces and remove trailing spaces
         words = symptom.strip().split()
