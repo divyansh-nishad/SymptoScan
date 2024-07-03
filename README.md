@@ -2,10 +2,16 @@
 
 This project explores the use of machine learning algorithms to predict diseases from symptoms. 
 
+## Video Demonstration
+
+https://www.youtube.com/watch?v=1VIN8arbb08
+
 ![First](/assets/images/1.png)
 ![Onboarding](/assets/images/2.png)
 ![Chat](/assets/images/3.png)
 ![Library](/assets/images/4.png)
+
+
 
 ### Algorithms Explored
 
